@@ -48,15 +48,17 @@ fun MainScreen() {
                     .padding(16.dp),
                 verticalArrangement = Arrangement.spacedBy(16.dp)
             ) {
+                // User Input
                 UserInput(
-                    name = name,
-                    onNameChange = { name = it }
+                    name = username,
+                    onNameChange = { username = it }
                 )
 
+                // Submit Button
                 Button(
                     onClick = {
                         if (username.isNotBlank()) {
-                            showGreeting = false
+                            showGreeting = true
                         }
                     },
                     modifier = Modifier
@@ -66,14 +68,14 @@ fun MainScreen() {
                     Text("Submit")
                 }
 
+                // Greeting Message
                 if (showGreeting) {
-                    Greeeting(
+                    Greeting(
                         name = username,
                         modifier = Modifier
                             .fillMaxWidth()
                             .padding(top = 16.dp)
                     )
-
                 }
             }
         }
@@ -88,17 +90,17 @@ fun UserInput(name: String, onNameChange: (String) -> Unit, modifier: Modifier =
         label = { Text("Enter your Name") },
         modifier = modifier
             .fillMaxWidth()
-            .testTag("UserInput")
+            .testTag("nameInput")
     )
 }
 
 @Composable
 fun Greeting(name: String, modifier: Modifier = Modifier) {
     Text(
-        text = "Hello $username!, Welcome to InF2007!",
-        modifier = Modifier
+        text = "Hello $name!, Welcome to INF2007!",
+        modifier = modifier
             .fillMaxWidth()
-            .testTag("greeting")
+            .testTag("greetingMsg")
     )
 }
 
